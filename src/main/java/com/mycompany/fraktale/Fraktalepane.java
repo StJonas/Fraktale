@@ -25,16 +25,19 @@ public class Fraktalepane extends BorderPane {
         this.setMargin(this.drawPane, new Insets(100));
         this.drawPane.setStyle("-fx-border-color:#424242; -fx-border-width:1px; -fx-background-color:rgba(255, 255, 255, 0.87);");
 
-        Label lb = new Label("Rekursionstiefe:");
-        TextField tf = new TextField();
-        tf.setText("0");
+        Label lb = new Label("Depth of recursion:");
+        lb.setStyle("-fx-font-family: 'Arial'; -fx-font-size: 14;");
+        Label counterLabel = new Label(String.valueOf(counter));
+        counterLabel.setStyle("-fx-font-family: 'Arial'; -fx-font-size: 14;");
 
-        Button bt = new Button("Zeichnen");
+        Button bt = new Button("Draw");
+        bt.setStyle("-fx-font-family: 'Arial'; -fx-font-size: 14;");
         bt.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent e) {
                 counter++;
+                counterLabel.setText(String.valueOf(counter));
 
                 if(counter == 1) {
                     setUpLine();
@@ -45,7 +48,7 @@ public class Fraktalepane extends BorderPane {
 
         });
 
-        HBox box = new HBox(20, lb, tf, bt);
+        HBox box = new HBox(20, lb, counterLabel, bt);
         this.setBottom(box);
 
         box.setAlignment(Pos.BASELINE_CENTER);
